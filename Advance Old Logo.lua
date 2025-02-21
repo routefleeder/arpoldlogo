@@ -24,7 +24,7 @@ local script_vers_text = "1.00"
 local update_url = "https://raw.githubusercontent.com/routefleeder/arpoldlogo/refs/heads/main/update.ini"
 local update_path = getWorkingDirectory() .. "/aol_update.ini"
 
-local script_url = ""
+local script_url = "https://github.com/routefleeder/arpoldlogo/raw/refs/heads/main/Advance%20Old%20Logo.lua"
 local script_path = thisScript().path
 
 local textdraws = {}
@@ -76,7 +76,7 @@ function main()
         if status == dlstatus.STATUS_ENDDOWNLOADDATA then
             updateIni = inicfg.load(nil, update_path)
             if tonumber(updateIni.info.vers) > script_vers then
-                sampAddChatMessage('upd, v: ' .. updateIni.info.vers_text, -1)
+                print('Вышел фикс, обновляем...' .. updateIni.info.vers_text, -1)
                 update_state = true
             end
             os.remove(update_path)
@@ -88,7 +88,7 @@ function main()
         if update_state then
             downloadUrlToFile(script_url, script_path, function(id, status)
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-                    sampAddChatMessage("Обновлено", -1)
+                    print("Обновлено.", -1)
                     thisScript():reload()
                 end
             end)
